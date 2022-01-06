@@ -10,3 +10,8 @@ type PostSessionNewData = {
     user: Pick<User, 'id' | 'name'>
 } & Pick<Session, 'accessToken'>
 export type PostSessionNew = Response<PostSessionNewData>
+
+type GetSessionData = {
+    userId: User['id']
+}
+export type GetSession = Response<GetSessionData>
