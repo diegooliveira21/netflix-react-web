@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import {LoginPath} from "../../../screens/login/login.types";
 import {isAuthenticated} from "../../../store/user/user.selectors";
 
-export default function UserGuard({ children }: any) {
+export default function UserAdminGuard({ children }: any) {
     const isUserAuthenticated = useSelector(isAuthenticated)
     const navigate = useNavigate()
     const from = useLocation()

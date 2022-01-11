@@ -6,7 +6,7 @@ import {ErrorMessage} from "./form.types";
 import {ErrorDescription} from "./form.styled";
 import {userActions} from "../../../../store/user/user.slice";
 import {useDispatch, useSelector} from "react-redux";
-import {isAuthenticated, isLoading} from "../../../../store/user/user.selectors";
+import {errorMessage, isAuthenticated, isLoading} from "../../../../store/user/user.selectors";
 import {useLocation, useNavigate} from "react-router-dom";
 import {HomePath} from "../../../home/home.types";
 
@@ -21,6 +21,7 @@ export default function Form() {
     const location = useLocation()
     const isUserAuthenticated = useSelector(isAuthenticated)
     const isUserLoading = useSelector(isLoading)
+    const loginErrorMessage = useSelector(errorMessage)
 
     useEffect(
         () => {
@@ -86,7 +87,7 @@ export default function Form() {
         <>
             <InputText type='text' placeholder={'E-mail'} name={'email'} onChange={handleChange}/>
             <InputText type={'password'} placeholder={'Senha'} name={'password'} onChange={handleChange}/>
-            <ErrorDescription>{error}</ErrorDescription>
+            <ErrorDescription>{error || loginErrorMessage}</ErrorDescription>
             <Button primary onClick={onSubmit}>{buttonDescription}</Button>
         </>
     )
